@@ -1,37 +1,79 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多彩小球</title>
+</head>
+<body>
+  <canvas id="canvas" width="1024" height="768" style="border: 1px solid #cccccc;background: #000;">
+    HTML5 Canvas not supported
+    </canvas>
+    <script>
+    
+    var canvas=document.getElementById('canvas');
+    canvas.height=728;
+    canvas.width=1024;
+    var context=canvas.getContext('2d');
+    
+    
+    var ballColorArr = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#2196F3', '#FF5722', '#FF9800']; // 小球颜色的数组
+    var ballArrx=[];
+    var ballArry=[];
+    var ballArrc=[];
+    var ballArrr=[];
+    var ballArrs=[];
+    for (var i = 0; i < 100; i++) {
+        
 
-You can use the [editor on GitHub](https://github.com/koudaiweike/koudaiweike.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+        var radius = Math.random() * 5 + 1.5;//
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+        ballArrr[i] = radius;
+        ballArrs[i] = -radius;
 
-### Markdown
+        var x = Math.random() * (canvas.width - 2 * radius) + radius;//
+        var y = Math.random() * (canvas.height - 2 * radius) + radius;//
+        
+        
+        ballArrx[i] = x;
+        ballArry[i] = y;
+        
+        
+        var colorSele = ballColorArr[Math.ceil(Math.random() * ballColorArr.length)];//
+        
+        ballArrc[i]=colorSele;
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+        context.fillStyle=colorSele;
+        context.beginPath();
+        context.arc(x,y,radius,0,2*Math.PI,true);
+        context.closePath();
+        context.fill();
+    }
+    setInterval(function(){//setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。setInterval() 方法会不停地调用函数，直到 clearInterval()被调用或窗口被关闭。
+        run(context);
+    }, 50);
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+    
+    var speed=0;
+    var startPoint=800;
+    var ra=30;
 
-- Bulleted
-- List
+function run(cxt){
+    
+    cxt.clearRect(0,0,1024,728);
+    
+    for (var i = 0; i < 100; i++) {
+    speed=ballArrs[i];
+    cxt.fillStyle=ballArrc[i];   
+    ballArrx[i]+=speed;
+    ra = ballArrr[i];
+    cxt.beginPath();
+    cxt.arc(ballArrx[i],ballArry[i],ra,0,2*Math.PI,true);
+    cxt.closePath();
+    cxt.fill();
+    }
+}
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/koudaiweike/koudaiweike.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    </script>
+</body>
+</html>
