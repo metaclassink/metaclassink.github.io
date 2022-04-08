@@ -14,13 +14,20 @@
         function success(pos) {
             var crd = pos.coords;
 
-            console.log('Your current position is:');
-            console.log('Latitude : ' + crd.latitude); //纬度
-            console.log('Longitude: ' + crd.longitude); //经度
-            console.log('Altitude: ' + crd.altitude); //海拔高度
-            console.log('AltitudeAccuracy: ' + crd.altitudeAccuracy); //海拔高度精度（米为单位）
-            console.log('经纬度的经度 More or less ' + crd.accuracy + ' 米'); //经纬度的精度（米为单位）
-            console.log('heading: ' + crd.heading); //当前设备的朝向，以弧度为单位，指示了按顺时针方向相对于整备的度数（如：heading为270时，表示正西方）
+
+            document.write('Your current position is:')
+            document.write('<br>Latitude : ' + crd.latitude); //纬度
+            document.write('<br>Longitude: ' + crd.longitude); //经度
+            document.write('<br>Altitude: ' + crd.altitude); //海拔高度
+            document.write('<br>AltitudeAccuracy: ' + crd.altitudeAccuracy); //海拔高度精度（米为单位）
+            document.write('<br>经纬度的经度 More or less ' + crd.accuracy + ' 米'); //经纬度的精度（米为单位）
+            document.write('<br>heading: ' + crd.heading); //当前设备的朝向，以弧度为单位，指示了按顺时针方向相对于整备的度数（如：heading为270时，表示正西方）
+            document.write('<br>options: ')
+            document.write('<br>options: ' + options.timeout)
+            document.write('<br>options: ' + options.enableHighAccuracy)
+            document.write('<br>options: ' + options.maximumAge)
+
+
         };
 
         function error(err) {
