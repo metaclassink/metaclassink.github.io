@@ -13,25 +13,23 @@
 
         function success(pos) {
             var crd = pos.coords;
-
-
-            document.write('Your current position is:')
-            document.write('<br>Latitude : ' + crd.latitude); //纬度
-            document.write('<br>Longitude: ' + crd.longitude); //经度
-            document.write('<br>Altitude: ' + crd.altitude); //海拔高度
-            document.write('<br>AltitudeAccuracy: ' + crd.altitudeAccuracy); //海拔高度精度（米为单位）
-            document.write('<br>经纬度的经度 More or less ' + crd.accuracy + ' 米'); //经纬度的精度（米为单位）
-            document.write('<br>heading: ' + crd.heading); //当前设备的朝向，以弧度为单位，指示了按顺时针方向相对于整备的度数（如：heading为270时，表示正西方）
-            document.write('<br>options: ')
+            document.write('你当前的位置是:')
+            document.write('<br>纬度Latitude : ' + crd.latitude); //纬度
+            document.write('<br>经度Longitude: ' + crd.longitude); //经度
+            document.write('<br>经纬度的精度 ' + crd.accuracy + ' 米'); //经纬度的精度（米为单位,5表示精确到5米的范围）      
+            document.write('<br>海拔高度Altitude: ' + crd.altitude); //海拔高度
+            document.write('<br>海拔高度经度AltitudeAccuracy: ' + crd.altitudeAccuracy + ' 米'); //海拔高度精度（米为单位，5表示精确到5米的范围）
+            document.write('<br>朝向heading: ' + crd.heading); //当前设备的朝向，以弧度为单位，指示了按顺时针方向相对于整备的度数（如：heading为270时，表示正西方）
+            document.write('<br>options对象: ')
             document.write('<br>options: ' + options.timeout)
             document.write('<br>options: ' + options.enableHighAccuracy)
             document.write('<br>options: ' + options.maximumAge)
-
-
         };
 
         function error(err) {
-            console.warn('ERROR(' + err.code + '): ' + err.message);
+            //console.warn('ERROR(' + err.code + '): ' + err.message);
+            document.write('ERROR code:<br>' + err.code);
+            document.write('<br>ERROR message:<br>' + err.message);
         };
 
         navigator.geolocation.getCurrentPosition(success, error, options);
